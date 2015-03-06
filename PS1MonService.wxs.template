@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<?define UpgradeCode = "18033c2a-aa39-45fe-a732-c3befe8cf551" ?>
+<?define Version = "@MAJORVERSION@" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" UpgradeCode="$(var.UpgradeCode)"
+             Name="PS1MonService" Version="$(var.Version)" Manufacturer="Thomson Reuters" Language="1033">
+        <Package InstallerVersion="200" Compressed="yes" Comments="Windows Installer Package"/>
+        <Media Id="1" Cabinet="product.cab" EmbedCab="yes"/>
+
+        <Directory Id="TARGETDIR" Name="SourceDir">
+        </Directory>
+
+        <Feature Id="TARGETDIR" Level="1" Title="BinaryDIR">
+            <ComponentGroupRef Id="BinaryGroup"/>
+        </Feature>
+        <UI />
+		<Icon Id="PS1MonService.ico" SourceFile="SourceDir\PS1MonService.ico"/>
+		<Property Id="ARPPRODUCTICON" Value="PS1MonService.ico" />
+        <InstallExecuteSequence>
+            <RemoveExistingProducts After='InstallInitialize' />
+        </InstallExecuteSequence>
+        <Upgrade Id="$(var.UpgradeCode)">
+          <UpgradeVersion Minimum="$(var.Version)" IncludeMinimum="no" OnlyDetect="no" Property="NEWERVERSIONDETECTED" />
+          <UpgradeVersion Minimum="0.0.0" Maximum="$(var.Version)" IncludeMinimum="yes" IncludeMaximum="yes" Property="OLDERVERSIONBEINGUPGRADED" />
+        </Upgrade>
+    </Product>
+</Wix>
+
+<!-- heat.exe dir .\transformations -o out.wxs -cg BinaryGroup -sfrag -gg -g1 -->
+<!-- candle.exe out.wxs cudl-data-feed.wxs -->
+<!-- light.exe -out cudl.msi out.wixobj cudl-data-feed.wixobj-->
+<!-- msiexec /qn /i cudl.msi TARGETDIR=C:\_flow\cudl -->
