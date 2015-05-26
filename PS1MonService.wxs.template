@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<?define UpgradeCode = "18033c2a-aa39-45fe-a732-c3befe8cf551" ?>
+<?define UpgradeCode = "48c11926-ec28-4bf0-a8e4-dd7898d6d5b3" ?>
 <?define Version = "@MAJORVERSION@" ?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Product Id="*" UpgradeCode="$(var.UpgradeCode)"
              Name="PS1MonService" Version="$(var.Version)" Manufacturer="Thomson Reuters" Language="1033">
-        <Package InstallerVersion="200" Compressed="yes" Comments="Windows Installer Package"/>
+        <Package InstallerVersion="200" Compressed="yes" Comments="Windows Installer Package" InstallScope="perMachine"/>
         <Media Id="1" Cabinet="product.cab" EmbedCab="yes"/>
 
         <Directory Id="TARGETDIR" Name="SourceDir">

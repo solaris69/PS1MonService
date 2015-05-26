@@ -16,7 +16,7 @@ SET workingdir="%~dp0PS1MonService"
 SET wixobj="%~dp0PS1MonService\*.wixobj"
 SET heatfile="%~dp0mon.wxs"
 SET mainfile="%~dp0PS1MonService.wxs"
-SET msifile="%~dp0PS1MonService_%1.msi"
+SET msifile="%~dp0PS1MonService-%1.msi"
 SET fnrdir="%~dp0fnr.exe"
 SET wixfile="%~dp0"
 pushd %wixbin%
